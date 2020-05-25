@@ -2,7 +2,7 @@ import { Board } from "../types";
 
 export const ADD_BOARD = "ADD_BOARD";
 export const REMOVE_BOARD = "REMOVE_BOARD";
-export const LINK_ITEM = "LINK_ITEM";
+export const LINK_COLUMN = "LINK_ITEM";
 
 interface AddBoardAction {
     type: typeof ADD_BOARD;
@@ -14,4 +14,13 @@ interface RemoveBoardAction {
     board_id: string;
 }
 
-export type BoardActionTypes = AddBoardAction | RemoveBoardAction;
+interface LinkColumnAction {
+    type: typeof LINK_COLUMN;
+    board_id: string;
+    column_id: string;
+}
+
+export type BoardActionTypes =
+    | AddBoardAction
+    | RemoveBoardAction
+    | LinkColumnAction;

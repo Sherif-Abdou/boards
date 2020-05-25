@@ -1,4 +1,9 @@
-import { BoardActionTypes, ADD_BOARD, LINK_ITEM, REMOVE_BOARD } from "./types";
+import {
+    BoardActionTypes,
+    ADD_BOARD,
+    LINK_COLUMN,
+    REMOVE_BOARD,
+} from "./types";
 import { Board } from "../types";
 
 export function addBoard(board: Board): BoardActionTypes {
@@ -15,10 +20,13 @@ export function removeBoard(board_id: string): BoardActionTypes {
     };
 }
 
-export function linkBoard(board_id: string, item_id: string) {
+export function linkBoard(
+    board_id: string,
+    column_id: string
+): BoardActionTypes {
     return {
-        type: LINK_ITEM,
-        item_id,
+        type: LINK_COLUMN,
         board_id,
+        column_id,
     };
 }
