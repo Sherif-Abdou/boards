@@ -4,7 +4,7 @@ import {
     LINK_COLUMN,
     REMOVE_BOARD,
 } from "./types";
-import { Board } from "../types";
+import {Board} from "../types";
 
 const initialState: Board[] = [];
 
@@ -19,10 +19,12 @@ export function boardReducer(
             return state.filter((board) => board.id !== action.board_id);
         case LINK_COLUMN:
             return state.map((board) => {
-                if (board.id === action.board_id) {
-                    board.columns.push(action.column_id);
+                let clone = Object.assign({}, board);
+                Object.setPrototypeOf(clone, Board.prototype);
+                if (clone.id === action.board_id) {
+                    clone.columns = [...clone.columns, action.column_id]
                 }
-                return board;
+                return clone;
             });
         default:
             return state;

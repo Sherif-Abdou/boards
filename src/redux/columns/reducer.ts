@@ -16,13 +16,15 @@ export function columnReducer(
         case ADD_COLUMN:
             return [...state, action.column];
         case REMOVE_COLUMN:
-            return state.filter((column) => column.id != action.column_id);
+            return state.filter((column) => column.id !== action.column_id);
         case LINK_ITEM:
             return state.map((column) => {
-                if (column.id == action.column_id) {
-                    column.items.push(action.item_id);
+                let clone = Object.assign({}, column);
+                Object.setPrototypeOf(clone, Column.prototype);
+                if (clone.id === action.column_id) {
+                    clone.items.push(action.item_id);
                 }
-                return column;
+                return clone;
             });
         default:
             return state;

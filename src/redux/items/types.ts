@@ -6,7 +6,6 @@ export const REMOVE_ITEM = "REMOVE_ITEM";
 interface AddItemAction {
     type: typeof ADD_ITEM;
     item: Item;
-    board_id: string;
 }
 
 interface RemoveItemAction {
