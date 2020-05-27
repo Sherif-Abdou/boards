@@ -22,11 +22,11 @@ class BoardList extends React.Component<Props, {}> {
 
     render() {
         const board_list = this.props.boards.map((board) => (
-            <BoardListItem board={board} />
+            <BoardListItem board={board} key={board.id} />
         ));
         return (
-            <div className="row">
-                <ul className="list-group col-4 ">{board_list}</ul>
+            <div className="col-4">
+                <ul className="list-group">{board_list}</ul>
             </div>
         );
     }
