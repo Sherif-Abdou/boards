@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Board } from "../redux/types";
+import {Board, Column} from "../redux/types";
 import store from "../redux";
 import * as board_actions from "../redux/boards/actions";
+import * as column_actions from "../redux/columns/actions"
 import BoardListItem from "./BoardListItem";
 
 interface Props {
@@ -12,8 +13,7 @@ interface Props {
 class BoardList extends React.Component<Props, {}> {
     constructor(props: Props) {
         super(props);
-        let board = new Board("Test Board");
-        store.dispatch(board_actions.addBoard(board));
+
     }
 
     static defaultProps = {

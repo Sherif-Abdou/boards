@@ -1,0 +1,10 @@
+.columnItem {
+    width: 200%;
+    border: thin gray;
+    border-style: solid;
+    overflow: hidden;
+    height: 100%;
+    padding: 10%;
+    align-content: center;
+    text-align: center;
+}
