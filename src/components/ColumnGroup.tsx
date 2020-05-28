@@ -1,6 +1,7 @@
 import React from "react";
 import {Board, Column} from "../redux/types";
 import {connect} from "react-redux";
+import ItemDetail from "./ItemDetail";
 
 interface Props {
     columns: Column[]
@@ -15,14 +16,14 @@ class ColumnGroup extends React.Component<Props, {}> {
             let isItem = false;
             const row = (
                 <tr key={i}>
-                    {this.props.columns.map(column => {
+                    {this.props.columns.map((column, col_index) => {
                         if (column.items.length > i) {
                             isItem = true;
                             return (
-                                <td key={column.id}>{column.items[i]}</td>
+                                <td key={column.id}><ItemDetail columnNumber={col_index} itemId={column.items[i]}/></td>
                             )
                         } else {
-                            return undefined;
+                            return (<td/>);
                         }
                     })}
                 </tr>
@@ -34,16 +35,18 @@ class ColumnGroup extends React.Component<Props, {}> {
         }
 
         return (
-            <table className="table">
-                <thead>
-                <tr>
-                    {headers}
-                </tr>
-                </thead>
-                <tbody>
-                    {rows}
-                </tbody>
-            </table>
+            <div className="table-responsive">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            {headers}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {rows}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 

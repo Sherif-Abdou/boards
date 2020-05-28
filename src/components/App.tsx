@@ -18,7 +18,7 @@ class App extends React.Component<{}, {}> {
             store.dispatch(column_actions.addColumn(column));
             store.dispatch(board_actions.linkBoard(store.getState().boards[0].id, store.getState().columns[i].id))
         });
-        ["Finish this", "Make it look nice"].forEach((value, i) => {
+        ["Finish this", "Make it look nice", "Other stuff", "fasdf", "asdf"].forEach((value, i) => {
             let item = new Item(value);
             store.dispatch(item_actions.addItem(item));
             store.dispatch(column_actions.linkItem(store.getState().items[i].id, store.getState().columns[0].id))
