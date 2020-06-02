@@ -2,6 +2,7 @@ import { Board, Item } from "../types";
 
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
+export const EDIT_ITEM = "EDIT_ITEM";
 
 interface AddItemAction {
     type: typeof ADD_ITEM;
@@ -13,4 +14,10 @@ interface RemoveItemAction {
     item_id: string;
 }
 
-export type ItemActionTypes = AddItemAction | RemoveItemAction;
+interface EditItemAction {
+    type: typeof EDIT_ITEM;
+    item_id: string;
+    item: Item;
+}
+
+export type ItemActionTypes = AddItemAction | EditItemAction | RemoveItemAction;

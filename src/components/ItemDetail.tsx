@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Column, Item} from "../redux/types";
 import {linkItem, unLinkItem} from "../redux/columns/actions";
+import ItemEdit from "./ItemEdit";
 
 interface Props {
     item: Item
@@ -37,6 +38,7 @@ class ItemDetail extends React.Component<Props, {}> {
                         }
                     </div>
                     <p className="card-text">{this.props.item.content}</p>
+                    <ItemEdit item={this.props.item} />
                 </div>
             </div>
             }

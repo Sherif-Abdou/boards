@@ -8,6 +8,7 @@ interface Props {
     selectBoard: typeof selectBoard
 }
 
+// A board item in the list of boards in the sidebar
 class BoardListItem extends React.Component<Props, {}> {
     constructor(props: Props) {
         super(props);
@@ -20,6 +21,7 @@ class BoardListItem extends React.Component<Props, {}> {
         return <button className="list-group-item" onClick={this.onButtonClick}>{board.name}</button>;
     }
 
+    // Selects the item's board when the item is clicked
     onButtonClick(event: any) {
         event.preventDefault();
         console.log(this.props.board.id);

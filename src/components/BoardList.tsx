@@ -10,6 +10,7 @@ interface Props {
     boards: Board[];
 }
 
+// Renders a list of boards in the side
 class BoardList extends React.Component<Props, {}> {
     constructor(props: Props) {
         super(props);

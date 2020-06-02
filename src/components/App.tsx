@@ -11,6 +11,7 @@ import * as item_actions from "../redux/items/actions";
 class App extends React.Component<{}, {}> {
     constructor(props: {}) {
         super(props);
+        // Initializes a test board with columns and items
         let board = new Board("Test Board");
         store.dispatch(board_actions.addBoard(board));
         ["Not Done", "In Progress", "Done"].forEach((value, i) => {
@@ -22,15 +23,15 @@ class App extends React.Component<{}, {}> {
             let item = new Item(value);
             store.dispatch(item_actions.addItem(item));
             store.dispatch(column_actions.linkItem(store.getState().items[i].id, store.getState().columns[0].id))
-        })
+        });
     }
     render() {
-        return (<div className="container">
+        return (<div className="container-fluid">
             <div className="row">
                 <BoardList />
                 <BoardDetails />
             </div>
-        </div>)
+        </div>);
     }
 }
 

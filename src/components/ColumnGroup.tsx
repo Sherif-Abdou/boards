@@ -9,8 +9,10 @@ interface Props {
 
 class ColumnGroup extends React.Component<Props, {}> {
     render() {
+        // The headers are the names of each column in the table
         const headers = this.props.columns.map(column => (<th scope={"col"} key={column.id}>{column.name}</th>));
 
+        // Creates an array of rows representing all the items in the board's columns
         const rows: JSX.Element[] = [];
         for (let i = 0; ; i++) {
             let isItem = false;
