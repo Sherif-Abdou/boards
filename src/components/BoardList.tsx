@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import {Board, Column} from "../redux/types";
+import { Board, Column } from "../redux/types";
 import store from "../redux";
 import * as board_actions from "../redux/boards/actions";
-import * as column_actions from "../redux/columns/actions"
+import * as column_actions from "../redux/columns/actions";
 import BoardListItem from "./BoardListItem";
+import AddBoard from "./AddBoard";
 
 interface Props {
     boards: Board[];
@@ -14,7 +15,6 @@ interface Props {
 class BoardList extends React.Component<Props, {}> {
     constructor(props: Props) {
         super(props);
-
     }
 
     static defaultProps = {
@@ -27,7 +27,10 @@ class BoardList extends React.Component<Props, {}> {
         ));
         return (
             <div className="col-4">
-                <ul className="list-group">{board_list}</ul>
+                <ul className="list-group">
+                    <AddBoard />
+                    {board_list}
+                </ul>
             </div>
         );
     }
