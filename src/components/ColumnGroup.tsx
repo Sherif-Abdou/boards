@@ -1,16 +1,21 @@
 import React from "react";
-import {Board, Column} from "../redux/types";
-import {connect} from "react-redux";
+import { Board, Column } from "../redux/types";
+import { connect } from "react-redux";
 import ItemDetail from "./ItemDetail";
+import AddColumn from "./AddColumn";
 
 interface Props {
-    columns: Column[]
+    columns: Column[];
 }
 
 class ColumnGroup extends React.Component<Props, {}> {
     render() {
         // The headers are the names of each column in the table
-        const headers = this.props.columns.map(column => (<th scope={"col"} key={column.id}>{column.name}</th>));
+        const headers = this.props.columns.map((column) => (
+            <th scope={"col"} key={column.id}>
+                {column.name}
+            </th>
+        ));
 
         // Creates an array of rows representing all the items in the board's columns
         const rows: JSX.Element[] = [];
@@ -22,10 +27,15 @@ class ColumnGroup extends React.Component<Props, {}> {
                         if (column.items.length > i) {
                             isItem = true;
                             return (
-                                <td key={column.id}><ItemDetail columnNumber={col_index} itemId={column.items[i]}/></td>
-                            )
+                                <td key={column.id}>
+                                    <ItemDetail
+                                        columnNumber={col_index}
+                                        itemId={column.items[i]}
+                                    />
+                                </td>
+                            );
                         } else {
-                            return (<td/>);
+                            return <td />;
                         }
                     })}
                 </tr>
@@ -42,27 +52,32 @@ class ColumnGroup extends React.Component<Props, {}> {
                     <thead>
                         <tr>
                             {headers}
+                            <th>
+                                <AddColumn />
+                            </th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {rows}
-                    </tbody>
+                    <tbody>{rows}</tbody>
                 </table>
             </div>
-        )
+        );
     }
 
     static defaultProps = {
-        columns: []
-    }
+        columns: [],
+    };
 }
 
 const mapStateToProps = (state: any) => {
-    const board: Board = state.boards.filter((board: Board) => board.id === state.selection.selected_board)[0];
-    const columns = state.columns.filter((column: Column) => board.columns.includes(column.id));
+    const board: Board = state.boards.filter(
+        (board: Board) => board.id === state.selection.selected_board
+    )[0];
+    const columns = state.columns.filter((column: Column) =>
+        board.columns.includes(column.id)
+    );
     return {
-        columns
-    }
+        columns,
+    };
 };
 
 export default connect(mapStateToProps, null)(ColumnGroup);
