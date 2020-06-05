@@ -3,6 +3,7 @@ import { Board, Column } from "../redux/types";
 import { connect } from "react-redux";
 import ItemDetail from "./ItemDetail";
 import AddColumn from "./AddColumn";
+import AddItem from "./AddItem";
 
 interface Props {
     columns: Column[];
@@ -11,9 +12,9 @@ interface Props {
 class ColumnGroup extends React.Component<Props, {}> {
     render() {
         // The headers are the names of each column in the table
-        const headers = this.props.columns.map((column) => (
+        const headers = this.props.columns.map((column, i) => (
             <th scope={"col"} key={column.id}>
-                {column.name}
+                {column.name} <AddItem index={i} column_id={column.id} />
             </th>
         ));
 
